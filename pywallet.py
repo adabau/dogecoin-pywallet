@@ -2053,18 +2053,18 @@ def parse_wallet(db, item_callback):
 		d["__type__"] = type
 
 		try:
-			if type == "tx":
+			 if type == "tx":
 				d["tx_id"] = inversetxid(kds.read_bytes(32).encode('hex_codec'))
 				start = vds.read_cursor
 				d['version'] = vds.read_int32()
 				n_vin = vds.read_compact_size()
 				d['txIn'] = []
-				for i in xrange(n_vin):
-					d['txIn'].append(parse_TxIn(vds))
+				# for i in xrange(n_vin):
+				#   d['txIn'].append(parse_TxIn(vds))
 				n_vout = vds.read_compact_size()
 				d['txOut'] = []
-				for i in xrange(n_vout):
-					d['txOut'].append(parse_TxOut(vds))
+				# for i in xrange(n_vout):
+				#   d['txOut'].append(parse_TxOut(vds))
 				d['lockTime'] = vds.read_uint32()
 				d['tx'] = vds.input[start:vds.read_cursor].encode('hex_codec')
 				d['txv'] = value.encode('hex_codec')
